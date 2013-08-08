@@ -1,14 +1,13 @@
 
+(Tan4ous/stories/my.story)
 Scenario: Composite step
-
+Examples:
 When sum of a or b
 Then sum is <result>
 
-Examples:
 |user|bonus|b|result|
 |Mr Jones|10|25|enough|
 |Mr Smeet|10|3|not_enough|
 |Ms Hugh|10|15|not_enough|
 
-
-
+Example: {user=Mr Jones, bonus=10, b=25, result=enough}
