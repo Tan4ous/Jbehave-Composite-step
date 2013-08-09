@@ -1,38 +1,36 @@
 package Tan4ous.steps;
 
-import Tan4ous.Point;
 import org.jbehave.core.annotations.*;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.Assert.assertEquals;
+
 
 public class MySteps {
+    int c;
 
-    private String status;
-    private Point point;
-    int sum = 0, b1;
-
-    @Given("b is <b>")
-    public void givenAStockOfb(@Named("b") int b) {
-        b1=b;
-
+    @Given("$d is d")
+    public void isD(@Named("d") int d) {
+        this.c += d;
     }
 
-    @When("sum of a or b")
-    @Alias("sum of a or b")
-    @Composite(steps = {"Given <user> is logged in", "Given bonus is <bonus>"})
-    public void aCompositeStep(@Named("user") String user, @Named("bonus") int bonus) {
-        sum = bonus + b1;
-    }
-    public void whenTheStockIsTradedAtsum(@Named("sum") Double sum) {
-        status = point.checkOutSum(sum);
+    @Given("$e is e")
+    public void isE(@Named("e")  int e) {
+        this.c += e;
     }
 
-    @Then("sum is <result>")
-    public void thenTheAlertStatusShouldBeresult(@Named("result") String stat) {
-        assertEquals(stat, status);
+    @Given("Sum of %a or %b")
+    @Alias("Sum of $a or $b")
+    @Composite(steps = {
+            "Given 10 is d",
+            "Given 10 is e"
+    })
+    public void SumAandB(@Named("a") int a,@Named("b")  int b) {
+        c = a + b;
     }
 
-
-
-
+    @Then("Sum equal $sum")
+    public void equalSum(int sum) {
+        assertEquals(c, sum);
+    }
 }
+
